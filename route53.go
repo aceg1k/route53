@@ -62,6 +62,20 @@ func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 				if d.NextArg() {
 					return d.ArgErr()
 				}
+			case "access_key_id":
+				if d.NextArg() {
+					p.Provider.AccessKeyId = d.Val()
+				}
+				if d.NextArg() {
+					return d.ArgErr()
+				}
+			case "secret_access_key":
+				if d.NextArg() {
+					p.Provider.SecretAccessKey = d.Val()
+				}
+				if d.NextArg() {
+					return d.ArgErr()
+				}
 			default:
 				return d.Errf("unrecognized subdirective '%s'", d.Val())
 			}
